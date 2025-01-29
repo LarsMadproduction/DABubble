@@ -1,0 +1,262 @@
+section {
+    width: 500px;
+    height: 600px;
+    padding: 40px 0px 0px 0px;
+    border-radius: 30px 0 30px 30px;
+    opacity: 0px;
+    box-shadow: 0px 6px 10px 0px #00000033;
+    margin-left: 75px;
+    background-color: white;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 64px;
+    margin-right: 64px;
+
+    img {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.5);
+        }
+    }
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    img {
+        width: 200px;
+        height: 200px;
+        gap: 20px;
+        border-radius: 500px;
+    }
+}
+
+.name {
+    margin-left: 64px;
+    margin-top: 38px;
+
+    h1 {
+        font-size: 28px;
+    }
+
+    a {
+        font-size: 18px;
+        text-decoration: none;
+    }
+}
+
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 372px;
+
+    a {
+        cursor: pointer;
+    }
+
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+
+    .status-text {
+        font-size: 20px;
+    }
+}
+
+.status {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status.active {
+    background-color: green;
+}
+
+.status.inactive {
+    background-color: gray;
+}
+
+.mail {
+    img {
+        width: 25px;
+        height: 20px;
+    }
+
+    a {
+        font-size: 18px;
+        margin-left: 114px;
+    }
+}
+
+.headline {
+    display: flex;
+    margin-top: 38px;
+    align-items: center;
+    margin-left: 64px;
+    gap: 20px;
+}
+
+.edit-section {
+    margin-left: 64px;
+}
+
+.description {
+    display: flex;
+    gap: 20px;
+}
+
+.input {
+    border-radius: 30px;
+    width: 332px;
+    height: 25px;
+    padding: 15px 20px 15px 20px;
+    border: 1px solid #444DF2;
+
+    &::placeholder {
+        font-size: 18px;
+    }
+
+    &:focus {
+        font-size: 18px;
+    }
+}
+
+.avatar-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 16px;
+
+    span {
+        font-size: 18px;
+    }
+}
+
+.avatar-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.avatar-frame {
+    cursor: pointer;
+    height: 68px;
+    width: 68px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid transparent;
+
+    &:hover {
+        border: 4px solid #e6e6e6;
+    }
+
+    &:active {
+        border: 4px solid #eceefe;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.buttons {
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+
+    button {
+        width: 133px;
+        height: 49px;
+        background-color: transparent;
+        border: 1px solid #444DF2;
+        border-radius: 30px;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(1.5);
+        }
+
+        span {
+            font-size: 18px;
+            color: #444DF2;
+        }
+
+        &:last-child {
+            background-color: #444DF2;
+
+            span {
+                color: white;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        border-radius: 30px;
+        max-width: 500px;
+        width: calc(100vw - 20px);
+        margin-left: 105px;
+        height: 670px;
+    }
+
+    .edit {
+        width: 85%;
+    }
+
+    .edit-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .input {
+        width: 75%;
+    }
+
+    .buttons {
+        gap: 20px;
+    }
+
+    .mail {
+        max-width: 280px;
+
+        a {
+            width: 260px;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .mail {
+        a {
+            margin-left: 66px;
+            max-width: 200px;
+        }
+    }
+}

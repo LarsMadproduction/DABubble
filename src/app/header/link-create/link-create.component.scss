@@ -1,0 +1,50 @@
+section {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding-right: 56px;
+
+  p {
+    margin-top: 50px;
+    font-size: 18px;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    width: 130px;
+    cursor: pointer;
+    color: #797ef3;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid #adb0d9;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #444df2;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  section {
+    p {
+      margin-block: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding-right: 0;
+    padding-bottom: 40px;
+    position: absolute;
+    top: 760px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+  }
+}

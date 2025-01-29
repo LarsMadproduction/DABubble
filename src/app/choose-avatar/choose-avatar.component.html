@@ -1,0 +1,43 @@
+<section>
+  <app-feedback-overlay></app-feedback-overlay>
+  <img
+    (mouseover)="onHoverArrow(true)"
+    (mouseout)="onHoverArrow(false)"
+    (click)="backToRegister()"
+    class="back-arrow"
+    [src]="backArrowImage"
+    alt=""
+  />
+  <div class="section-content">
+    <div class="headline">
+      <h2>Wähle deinen Avatar</h2>
+    </div>
+    <div class="user-details">
+      <div class="user-avatar">
+        <img [src]="selectedAvatar" alt="Selected Avatar" />
+      </div>
+      <span class="user-name"> {{ userData.userName }} </span>
+    </div>
+    <div class="avatar-list">
+      <span>Aus der Liste wählen</span>
+      <div class="avatar-container">
+        <div class="avatar-frame" *ngFor="let avatarImage of avatarImages">
+          <img
+            [src]="avatarImage"
+            alt="Avatar"
+            (click)="selectAvatar(avatarImage)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="next-btn">
+      <button [disabled]="!createUser"
+      [ngClass]="{
+        'primary-btn': createUser,
+        'disabled-btn': !createUser
+      }" (click)="openLogin()" class="primary-btn">Anmelden</button>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

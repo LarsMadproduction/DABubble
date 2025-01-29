@@ -1,0 +1,234 @@
+section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 460px;
+    justify-content: right;
+    margin-right: 45px;
+
+    h1 {
+        margin-right: 20px;
+        font-size: 26px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    svg {
+        margin-left: 20px;
+        cursor: pointer;
+    }
+}
+
+.profilePic {
+    cursor: pointer;
+
+    >img {
+        height: 70px;
+        border-radius: 50%;
+    }
+
+    span {
+        position: absolute;
+        right: 30px;
+        bottom: 10px;
+        border-radius: 50%;
+        width: 13px;
+        height: 13px;
+        border: 2px #edefff solid;
+    }
+}
+
+.overlay {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    hr {
+        display: none;
+    }
+
+    p {
+        position: absolute;
+        right: 20px;
+        top: 114px;
+    }
+
+    >div {
+        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 130px;
+        right: 20px;
+        width: 222px;
+        height: 121px;
+        background-color: white;
+        border-radius: 30px 0 30px 30px;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+
+        h3 {
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
+            margin-block: 10px;
+        }
+
+        a {
+            cursor: pointer;
+            width: 100%;
+            border-radius: 35px;
+
+            &:hover {
+                background-color: #ECEEFE;
+                color: #535AF1;
+            }
+
+            img {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1921px) {
+    .overlay {
+        p {
+            right: calc(50vw - 940px);
+        }
+
+        >div {
+            right: calc(50vw - 940px);
+        }
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    section {
+        width: 340px;
+        margin-right: 22px;
+
+        h1 {
+            font-size: 24px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    section {
+        width: 176px;
+
+        h1 {
+            display: none;
+        }
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        margin-right: 16px;
+        width: auto;
+
+        h1 {
+            display: none;
+        }
+
+        svg {
+            display: none;
+        }
+
+        span {
+            display: none;
+        }
+    }
+
+    .slideOut {
+        transform: translateY(100%) !important;
+        transition: transform 0.2s ease-in-out !important;
+    }
+
+    .profilePic {
+
+        >img {
+            height: 50px;
+        }
+    }
+
+    .overlay {
+        overflow: hidden;
+
+        p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-left: -110px;
+            position: static;
+        }
+
+        hr {
+            display: block;
+            border: 3px solid rgba(217, 217, 217, 1);
+            width: 56px;
+            cursor: pointer;
+        }
+
+        >div {
+            box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.2);
+            top: auto;
+            right: 0;
+            bottom: 0;
+            width: calc(100% - 60px);
+            height: 206px;
+            border-radius: 30px 30px 0px 0px;
+            padding: 30px;
+            align-items: flex-start;
+            animation: slideInBox 0.2s ease-in-out;
+
+            h3 {
+                font-weight: 600;
+                font-size: 24px;
+                text-align: center;
+                margin-block: 10px;
+                margin-left: 15px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                width: auto;
+                border-radius: 35px;
+                padding: 4px 20px 4px 20px;
+
+                &:hover {
+                    background-color: #ECEEFE;
+                    color: #535AF1;
+                }
+
+                &:hover img {
+                    filter: invert(38%) sepia(80%) saturate(2932%) hue-rotate(225deg) brightness(107%) contrast(94%);
+                }
+
+                img {
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+@keyframes slideInBox {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}

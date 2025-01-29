@@ -1,0 +1,100 @@
+<section>
+  <app-feedback-overlay></app-feedback-overlay>
+  <div class="section-content">
+    <div class="headline">
+      <h2>Anmeldung</h2>
+      <span
+        >Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
+        verwendest.
+      </span>
+    </div>
+    <form #form="ngForm">
+      <div class="input">
+        <img [src]="emailImg" alt="Email Icon" />
+        <input
+          placeholder="beispielname@email.com"
+          type="email"
+          name="email"
+          [(ngModel)]="emailText"
+          (focus)="onFocus('email')"
+          (blur)="onBlur('email')"
+          (input)="onInput('email', $event)"
+          #emailInput="ngModel"
+          required
+          email
+        />
+        <div
+          class="error-message"
+          *ngIf="emailInput.invalid && emailInput.touched && showError"
+        >
+          *Diese E-Mail-Adresse ist leider ungültig.
+        </div>
+      </div>
+
+      <div class="input">
+        <img [src]="lockImg" alt="Lock Icon" />
+        <input
+          placeholder="Passwort"
+          [type]="passwordFieldType"
+          name="password"
+          [(ngModel)]="passwordText"
+          (focus)="onFocus('password')"
+          (blur)="onBlur('password')"
+          (input)="onInput('password', $event)"
+          #passwortInput="ngModel"
+          required
+          password
+        />
+        <img
+          (mousedown)="onMouseDown()"
+          (mouseup)="onMouseUp()"
+          (mouseleave)="onMouseUp()"
+          class="visibility-icon"
+          [src]="visibilityIcon"
+          alt="visibility Icon"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            (passwortInput.invalid && passwortInput.touched && showError) ||
+            showError
+          "
+        >
+          *Falsches Passwort oder E-Mail. Bitte noch einmal versuchen.
+        </div>
+      </div>
+    </form>
+    <span class="forgot-pw" (click)="openResetPassword()"
+      >Passwort vergessen?</span
+    >
+    <div class="or-div">
+      <div class="div-line"></div>
+      <span>ODER</span>
+    </div>
+    <div class="google-btn" (click)="onGoogleLogin()">
+      <img src="/Google.png" alt="Google Logo" />
+      <span>Anmelden mit Google</span>
+    </div>
+    
+    <div class="login-btns">
+      <button
+        [disabled]="!loginUser"
+        [ngClass]="{ 'primary-btn': loginUser, 'disabled-btn': !loginUser }"
+        (click)="onLogin()"
+        class="primary-btn"
+      >
+        Anmelden
+      </button>
+      <button
+        [disabled]="!loginGuest"
+        [ngClass]="{ 'secondary-btn': loginGuest, 'disabled-btn': !loginGuest }"
+        (click)="guestLogin()"
+        class="secondary-btn"
+      >
+        Gäste-Login
+      </button>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

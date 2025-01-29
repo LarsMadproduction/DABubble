@@ -1,0 +1,12 @@
+<section (click)="toggleSideBar()">
+        <p>Workspace-Menü {{ channelService.slideOutNavBar ? 'öffnen' : 'schließen'}}
+                <img src="{{ channelService.slideOutNavBar ?  './Group 1.png' : './Group 2.png' }}">
+        </p>
+</section>
+
+<app-searchbar></app-searchbar>
+<app-side-nav-bar></app-side-nav-bar>
+
+@if (channelService.createChannelBox) {
+<app-create-channel></app-create-channel>
+}

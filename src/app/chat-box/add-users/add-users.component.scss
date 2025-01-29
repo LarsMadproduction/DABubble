@@ -1,0 +1,372 @@
+.displayUsersBox {
+    background-color: white;
+    border-radius: 30px 0 30px 30px;
+    padding-inline: 40px;
+    padding-block: 20px;
+    top: 78px;
+    position: absolute;
+    width: 415px;
+    height: 411px;
+    right: 58px;
+    z-index: 6;
+    box-sizing: border-box;
+    overflow: hidden;
+    scrollbar-width: none;
+
+    .addMembersToChannel {
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 4px 20px 4px 20px;
+        margin-block: 12px;
+        height: 50px;
+        gap: 15px;
+        margin-left: 10px;
+        border-radius: 35px;
+        width: fit-content;
+
+        &:Hover {
+            color: #444DF2;
+            background-color: #ECEEFE;
+        }
+
+        &:hover .channels {
+            fill: #444DF2;
+        }
+    }
+
+    .scrollableUsers {
+        scrollbar-width: none;
+        overflow-y: scroll;
+        box-sizing: border-box;
+        height: 212px;
+    }
+
+    h2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span {
+        font-size: 26px;
+        cursor: pointer;
+        rotate: 45deg;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+
+        &:hover {
+            color: #444df2;
+            background-color: #ECEEFE;
+        }
+    }
+
+    .users {
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 4px 20px 4px 20px;
+        margin-block: 12px;
+        height: 50px;
+        gap: 15px;
+        margin-left: 10px;
+        border-radius: 35px;
+        width: fit-content;
+
+        &:hover {
+            background-color: #ECEEFE;
+        }
+
+        >div {
+            position: relative;
+            height: 50px;
+        }
+
+        img {
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+            border-radius: 50px;
+            object-fit: cover;
+        }
+
+        span {
+            position: absolute;
+            left: 36px;
+            bottom: 2px;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            border: 2px #edefff solid;
+        }
+    }
+}
+
+.addUsersBox {
+    background-color: white;
+    border-radius: 30px 0 30px 30px;
+    padding: 20px 40px 20px 40px;
+    top: 78px;
+    position: absolute;
+    width: 514px;
+    height: 294px;
+    right: 58px;
+    z-index: 8;
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            font-size: 24px;
+        }
+
+        img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    .channel {
+        b {
+            font-size: 18px;
+            font-weight: 400;
+            margin-right: 15px;
+        }
+
+        span {
+            color: #797EF3;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+
+    .inputField {
+        margin-top: 20px;
+    }
+
+    input {
+        border-radius: 30px;
+        width: 434px;
+        height: 55px;
+        padding-left: 15px;
+        border: 1px solid #444DF2;
+
+        &::placeholder {
+            font-size: 18px;
+        }
+
+        &:focus {
+            font-size: 18px;
+        }
+    }
+
+    .button {
+        margin-top: 40px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 32px;
+
+        button {
+            width: 147px;
+            height: 49px;
+            border: 1px solid #444DF2;
+            border-radius: 25px;
+            background-color: #444DF2;
+
+            span {
+                color: white;
+                font-size: 18px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(1.5);
+            }
+        }
+    }
+
+}
+
+.dropdownInput {
+    position: relative;
+    margin-top: 16px;
+}
+
+.dropdown {
+    border-radius: 0px 20px 20px 20px;
+    height: 204px;
+    width: 335px;
+    padding: 20px;
+    scrollbar-width: none;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ADB0D9;
+    position: absolute;
+    top: 42px;
+    left: 22px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.invisibleOverlay {
+    background-color: transparent !important;
+    pointer-events: none !important;
+}
+
+.invisibleInputOverlay {
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    display: flex;
+    max-width: 96%;
+
+    >p {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: #ECEEFE;
+        border-radius: 35px;
+        height: 34px;
+        padding-block: 3px;
+        padding-left: 18px;
+        padding-right: 28px;
+        margin-right: 8px;
+        font-size: 16px;
+        top: -15px;
+
+        >p {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 66px;
+            font-size: 16px;
+        }
+
+        >span {
+            font-size: 22px;
+            position: absolute;
+            right: 3px;
+            top: 8px;
+            cursor: pointer;
+            rotate: 45deg;
+            width: 12px;
+            height: 12px;
+
+            &:hover {
+                color: #444df2;
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-right: 3px;
+        }
+    }
+}
+
+.click {
+    cursor: pointer;
+    padding-inline: 12px !important;
+    order: 66;
+}
+
+.greyButton {
+    background-color: #686868 !important;
+    cursor: not-allowed;
+}
+
+.redBorder {
+    border: 1px solid #ED1E79 !important;
+}
+
+.users {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px 20px 4px 20px;
+    height: 50px;
+    gap: 15px;
+    border-radius: 35px;
+    width: fit-content;
+
+    &:hover {
+        background-color: #ECEEFE;
+    }
+
+    >div {
+        position: relative;
+        height: 50px;
+    }
+
+    img {
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+
+    span {
+        position: absolute;
+        left: 36px;
+        bottom: 2px;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        border: 2px #edefff solid;
+    }
+}
+
+.users.active {
+    color: #535AF1;
+    background-color: #ECEEFE;
+    font-weight: 700;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+}
+
+@media screen and (max-width: 768px) {
+    .displayUsersBox {
+        right: 10px;
+        max-width: 415px;
+        width: 95%;
+        padding-inline: 16px;
+    }
+
+    .addUsersBox {
+        right: 10px;
+        max-width: 514px;
+        width: 90%;
+        padding-inline: 16px;
+    }
+
+    .dropdownInput {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .addUsersBox {
+        left: 10px;
+        width: auto;
+    }
+}

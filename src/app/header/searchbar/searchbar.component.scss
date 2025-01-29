@@ -1,0 +1,165 @@
+section {
+    max-width: 989px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 42px;
+    position: relative;
+    padding-left: 45px;
+    margin-right: 20px;
+
+    .searchbarDropdown {
+        position: absolute;
+        z-index: 3;
+        top: 58px;
+        left: 46px;
+        width: calc(100% - 150px);
+        min-width: 369px;
+        height: 396px;
+        background-color: white;
+        border-radius: 0 30px 30px 30px;
+        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+
+        >div {
+            overflow-y: auto;
+            scrollbar-width: none;
+            height: 100%;
+
+            >p {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                border-radius: 30px;
+                padding-block: 2px;
+                padding-inline: 12px;
+                margin-block: 4px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                &:hover {
+                    background-color: #edefff;
+                }
+            }
+
+            .searchResult {
+                display: flex;
+            }
+        }
+    }
+
+    a {
+        position: absolute;
+        right: 45px;
+    }
+
+    svg {
+        width: 26px;
+        height: 26px;
+        color: #686868;
+        cursor: pointer;
+    }
+
+    input {
+        all: unset;
+        color: #686868;
+        font-size: 24px;
+        width: 85%;
+
+        &:focus {
+            background-color: white;
+        }
+
+        &:focus-within {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+b {
+    margin-inline: 4px;
+}
+
+@media screen and (max-width: 1250px) {
+    section {
+        padding-left: 32px;
+
+        a {
+            right: 28px;
+        }
+
+        input {
+            font-size: 19px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    section {
+        margin-right: -20px;
+        margin-left: -52px;
+
+        a {
+            right: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        margin-block: 12px;
+        padding-left: 24px;
+        height: 48px;
+        border: 1px solid #ADB0D9;
+        margin-left: 20px;
+        margin-right: 10px;
+
+        .searchbarDropdown {
+            top: 36px;
+            left: 24px;
+            width: 80%;
+            height: 40vh;
+            padding: 12px;
+            min-width: 238px;
+        }
+
+        a {
+            right: 24px;
+        }
+
+        svg {
+            height: 24px;
+            width: 24px;
+        }
+
+        input {
+            font-size: 17px;
+            color: #686868;
+        }
+    }
+}
+
+
+.chat-box {
+    max-width: 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    input {
+        font-size: 18px !important;
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+}

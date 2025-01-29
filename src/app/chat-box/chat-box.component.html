@@ -1,0 +1,266 @@
+<div class="chat-box" [ngClass]="{ 'active': !channelService.isServer}">
+
+    <app-add-users></app-add-users>
+
+    <div class="chat-header">
+        @switch (chatType) {
+
+        @case('new') {
+        <div class="new-chat">
+            <div class="title">
+                <h1>Neue Nachricht</h1>
+            </div>
+            <div class="searchbar">
+                <app-searchbar [chatType]="'new'"></app-searchbar>
+            </div>
+        </div>
+        }
+
+        @case('private') {
+        <div class="private-chat">
+            <a class="title" (click)="openProfile(userService.privMsgUserId)">
+                <div class="avatar-image">
+                    <img src="{{getUserImg()}}" alt="">
+                    <mat-icon fontSet="material-symbols-sharp" class="status-icon"
+                        [ngClass]="{'offline': getUserStatus() === 'offline', 'online': getUserStatus() === 'online'}">
+                        fiber_manual_record
+                    </mat-icon>
+                </div>
+                <h1>{{getUserName()}}</h1>
+            </a>
+        </div>
+        }
+
+        @case('channel') {
+        <div class="channel-chat">
+            <a (click)="showEditChannel()" class="channel-title">
+                <h2>#</h2>
+                <h1>{{getChannelName()}}</h1>
+                <mat-icon class="arrow-down" fontSet="material-symbols-rounded">keyboard_arrow_down</mat-icon>
+            </a>
+            <div class="members-container">
+                <div (click)="openDisplayUsersBox()" class="members">
+                    <div>
+                        @let members = getChannelMembers();
+                        @let displayedMembers = members.slice(0, 3);
+                        @let additionalCount = members.length - displayedMembers.length;
+
+
+                        @for (member of displayedMembers; track member.id) {
+                        <img src="{{member.userImage}}" alt="">
+                        }
+                        @if (additionalCount > 0) {
+                        <div class="additional-members">
+                            <span>
+                                ...
+                            </span>
+                        </div>
+                        }
+
+                    </div>
+                    <p>{{getChannelMembers().length}}</p>
+                </div>
+                <mat-icon (click)="toggleDisplayAddBox()" class="add-member"
+                    fontSet="material-symbols-rounded">person_add</mat-icon>
+                <mat-icon (click)="openDisplayUsersBox()" class="add-member-responsive"
+                    fontSet="material-symbols-rounded">person_add</mat-icon>
+            </div>
+        </div>
+        }
+
+        @case('thread') {
+        <div class="thread-chat">
+            <div class="title">
+                <h1>Thread</h1>
+                @if (messageService.threadChannelName) {
+                <p>#</p>
+                <h2>{{messageService.threadChannelName}}</h2>
+                }
+            </div>
+            <mat-icon class="close-btn" (click)="closeThread()" fontSet="material-symbols-rounded">close</mat-icon>
+        </div>
+        }
+        }
+    </div>
+
+    @if(openEditChannel) {
+    <div class="overlay">
+        <p #editChannel id="editChannel">
+            <app-edit-channel channelId={{channelService.channelChatId}}
+                (onClose)="closeEditChannel()"></app-edit-channel>
+        </p>
+    </div>
+    }
+
+    <div class="messages-container">
+        @switch (chatType) {
+
+        @case('channel') {
+        @for(item of filteredChannelMessages; track item.type === 'message' ? item.data.id : item.date) {
+        @if (item.type === 'separator') {
+        <div class="date-separator">
+            <span></span>
+            <p>{{ item.date }}</p>
+            <span></span>
+        </div>
+        }
+        @if (item.type === 'message') {
+        <app-message [message]="item.data" [chatType]="chatType" [excludeElements]="excludeElements"
+            [(openProfileBox)]="openProfileBox"></app-message>
+        }
+        }@empty {
+        <div class="channel-chat-empty">
+            <div class="channel-title">
+                <h2>#</h2>
+                <h1>{{getChannelName()}}</h1>
+                <mat-icon class="arrow-down" fontSet="material-symbols-rounded">keyboard_arrow_down</mat-icon>
+            </div>
+            <p>Du hast diesen Channel heute erstellt. Das ist der Anfang des Channels <span>#
+                    {{getChannelName()}}</span>.</p>
+        </div>
+        }
+        }
+
+        @case('private') {
+        @for(item of filteredPrivateMessages; track item.type === 'message' ? item.data.id : item.date) {
+        @if (item.type === 'separator') {
+        <div class="date-separator">
+            <span></span>
+            <p>{{ item.date }}</p>
+            <span></span>
+        </div>
+        }
+        @if (item.type === 'message') {
+        <app-message [message]="item.data" [chatType]="chatType" [excludeElements]="excludeElements"
+            [(openProfileBox)]="openProfileBox"></app-message>
+        }
+        }@empty {
+        <div class="private-chat-empty">
+            <div>
+                <img src="{{getUserImg()}}" alt="">
+                <h1>{{getUserName()}}</h1>
+            </div>
+
+            @if (userService.privMsgUserId === userService.loggedUserId && userService.loggedUserId === guestUrl) {
+            <p><b>Dies ist ein Testaccount.</b> Alle Eingaben die du hier machst werden nach dem Logout gelöscht. Du
+                kannst alle Funktionen testen, Channels erstellen, Nachrichten austauschen und die App anschauen und
+                testen.
+                Wenn sie dir gefällt kannst du gerne einen richtigen Account bei uns registrieren 😀</p>
+            }
+            @else if(userService.privMsgUserId === userService.loggedUserId){
+            <p><b>Dieser Raum ist nur für dich da. </b>Mache dir Notizen, liste deine To-dos auf oder bewahre Links und
+                Texten griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst beschprechen.</p>
+            }
+            @else{
+            <p>Diese Unterhaltung findet nur Zwichen <span>&#64;{{getUserName()}}</span> und dir statt</p>
+            }
+        </div>
+        }
+        }
+
+        @case('thread') {
+        @for(message of filteredThreadMessages; track message.id; let last = $last) {
+        @if(last && countThreadAnswers() > 1){
+        <div class="thread-separator">
+            <p>{{countThreadAnswers() - 1}} Antworten</p>
+            <span></span>
+        </div>}
+        <app-message [message]="message" [chatType]="chatType" [excludeElements]="excludeElements"
+            [(openProfileBox)]="openProfileBox"></app-message>
+        }
+        }
+        }
+
+    </div>
+
+
+
+
+
+    <div class="input-container" [class]="{ 'thread-margin': chatType === 'thread' ,
+     'reduced-margin': messageService.threadOpen && !channelService.slideOutNavBar && chatType !== 'thread'}">
+
+        @if(showSuggestions) {
+        <div class="suggestions-container">
+            <div>
+
+                @for(user of suggestedUsers; track user.id) {
+                <p (click)="selectSuggestion(user)">
+                    <img [src]="user.userImage" alt="{{user.name}}">{{user.name}}
+                </p>
+                }
+
+                @for(channel of suggestedChannels; track channel.chanId) {
+                <p (click)="selectSuggestion(channel)">
+                    #{{channel.chanName}}
+                </p>
+                }
+            </div>
+        </div>
+        }
+
+        @if(chatType === 'thread') {
+        <div class="emoji-picker"
+            [ngClass]="emojiService.emojiPickerOn && emojiService.emojiPickerInThread ? 'active' : 'hidden'"
+            #emojiPicker>
+            <emoji-mart appClickOutside (clickOutside)="emojiService.closeEmojiPicker()" title="Pick your emoji…"
+                emoji="point_up" set="twitter" (emojiClick)="emojiService.addEmoji($event)"></emoji-mart>
+        </div>
+        } @else {
+        <div class="emoji-picker"
+            [ngClass]="emojiService.emojiPickerOn && !emojiService.emojiPickerInThread ? 'active' : 'hidden'"
+            #emojiPicker>
+            <emoji-mart appClickOutside (clickOutside)="emojiService.closeEmojiPicker()" title="Pick your emoji…"
+                emoji="point_up" set="twitter" (emojiClick)="emojiService.addEmoji($event)"></emoji-mart>
+        </div>
+        }
+
+        @if(chatType === 'thread') {
+        <textarea (input)="onInput($event)" #threadMessageInput type="text" [(ngModel)]="threadMessageText"
+            [placeholder]="getPlaceholder()" rows="2" *ngIf="isBrowser" autosize (keyup.enter)="sendMessage()">
+        </textarea>
+        }
+        @else {
+        <textarea (input)="onInput($event)" #messageInput type="text" [(ngModel)]="messageText"
+            [placeholder]="getPlaceholder()" rows="2" *ngIf="isBrowser" autosize (keyup.enter)="sendMessage()">
+        </textarea>
+        }
+
+        <div class="actions-container">
+            <div>
+                @if(chatType === 'thread') {
+                <button
+                    (click)="emojiService.toggleEmojiPicker('threadMessage', chatType, null); $event.stopPropagation()">
+                    <mat-icon fontSet="material-symbols-rounded">sentiment_satisfied</mat-icon>
+                </button>
+
+                <button>
+                    <mat-icon (click)="triggerAtMention()" fontSet="material-symbols-rounded">alternate_email</mat-icon>
+                </button>
+                }
+                @else {
+                <button
+                    (click)="emojiService.toggleEmojiPicker('newMessage', chatType, null); $event.stopPropagation()">
+                    <mat-icon fontSet="material-symbols-rounded">sentiment_satisfied</mat-icon>
+                </button>
+
+                <button>
+                    <mat-icon (click)="triggerAtMention()" fontSet="material-symbols-rounded">alternate_email</mat-icon>
+                </button>
+                }
+            </div>
+
+            <mat-icon fontSet="material-symbols-rounded" class="send-icon" (click)="sendMessage()">send</mat-icon>
+
+        </div>
+    </div>
+
+</div>
+
+@if(openProfileBox) {
+<div class="overlay">
+    <p #profileBox id="profileBox">
+        <app-contact-window (onClose)="closeProfilBox()"></app-contact-window>
+    </p>
+</div>
+}

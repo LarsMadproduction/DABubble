@@ -1,0 +1,77 @@
+<section>
+    <div *ngIf="!isEditMode" class="view">
+        <div class="top">
+            <h2>Profil</h2>
+            <img (click)="close()" src="/close.svg" alt="close icon">
+        </div>
+        <div class="avatar">
+            <img src="{{picture}}">
+        </div>
+        <div class="name">
+            <div class="edit">
+
+                <h1>{{name}}</h1>
+
+                <a (click)="toggleEditMode()">Bearbeiten</a>
+
+            </div>
+            <div class="status-container">
+
+                <div class="status"
+                    [ngStyle]="{'background-color': status === 'online' ? onlineColor : offlineColor}">
+                </div>
+                @if (status === "online") {
+                <span class="status-text" [ngStyle]="{ color: 'green'}">
+                    Aktiv
+                </span>
+                }@else {
+                <span class="status-text" [ngStyle]="{ color: 'grey'}"></span>
+                    Abwesend
+                }
+            </div>
+        </div>
+        <div class="mail">
+            <div class="headline">
+                <img src="mail-black.png" alt="Mail Icon">
+                <h2>E-Mail-Adresse</h2>
+            </div>
+            <a [href]="'mailto:' + email">{{email}}</a>
+        </div>
+    </div>
+
+    <div *ngIf="isEditMode" class="edit-view">
+        <div class="top">
+            <h2>Profil bearbeiten</h2>
+            <img (click)="close()" src="/close.svg" alt="close icon">
+        </div>
+        <div class="avatar">
+            <img src="{{picture}}">
+        </div>
+        <div class="avatar-list">
+            <div class="avatar-container">
+              <div class="avatar-frame" *ngFor="let avatarImage of avatarImages">
+                <img
+                  [src]="avatarImage"
+                  alt="Avatar"
+                  (click)="selectAvatar(avatarImage)"
+                />
+              </div>
+            </div>
+          </div>
+        <div class="edit-section">
+            <div class="description">
+                <img src="/account_circle.svg">
+                <h2>Vollständiger Name</h2>
+            </div>
+            <input type="text" class="input" [(ngModel)]="name">
+        </div>
+        <div class="buttons">
+            <button class="cancel" (click)="cancel()">
+                <span>Abbrechen</span>
+            </button>
+            <button class="save" (click)="save()">
+                <span>Speichern</span>
+            </button>
+        </div>
+    </div>
+</section>

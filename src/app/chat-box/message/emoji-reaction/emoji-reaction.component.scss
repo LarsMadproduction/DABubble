@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+p{
+    margin: 0;
+}
+
+.emoji-reaction {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    .emoji-icon {
+        display: flex;
+        padding: 5px 10px 5px 10px;
+        gap: 10px;
+        border-radius: 20px;
+        border: 1px solid #ADB0D9;
+        background-color: white;
+        font-size: 16px;
+        position: relative;
+
+        &:hover {
+            .emoji-popup {
+                display: flex;
+            }
+        }
+
+        .emoji-popup {
+            min-width: 150px;
+            position: absolute;
+            bottom: 35px;
+            left: 35px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px 15px 10px;
+            border-radius: 30px 30px 30px 0px;
+            background-color: #444DF2;
+            color: white;
+            z-index: 10;
+
+            p:first-child {
+                font-size: 22px;
+            }
+
+            .emoji-users {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    flex-direction: row;
+                    gap: 5px;
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 700;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .add-emoji {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 30px;
+        background-color: white;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #ECEEFE;
+            color: #535AF1;
+        }
+    }
+}
+
+.my-message {
+    justify-content: flex-end !important;
+}
+
+emoji-mart {
+    top: 0px;
+    left: 0px;
+}

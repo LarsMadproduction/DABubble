@@ -1,0 +1,319 @@
+section {
+    background-color: white;
+    height: 100%;
+    width: 306px;
+    border-radius: 30px;
+    padding: 0px 26px 32px 30px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    box-sizing: border-box;
+    position: absolute;
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.2s ease-in-out, visibility 0.2s linear, opacity 0.2s;
+
+    .wrapper {
+        height: calc(100vh - 176px);
+        overflow-y: auto;
+        scrollbar-width: none;
+
+        h2 {
+            padding-block: 18px;
+            margin: 0;
+            font-size: 24px;
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background-color: white;
+
+            >div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+
+                .editChannel {
+                    cursor: pointer;
+                    margin-right: -2px;
+                    border-radius: 8px;
+                    padding: 6px;
+
+                    &:hover {
+                        filter: invert(38%) sepia(80%) saturate(2932%) hue-rotate(225deg) brightness(107%) contrast(94%);
+                    }
+                }
+
+                &:hover {
+                    background-color: #ECEEFE;
+                }
+            }
+        }
+
+        h3 {
+            font-size: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            gap: 10px;
+            margin: 0;
+            margin-bottom: 25px;
+
+            &:hover {
+                color: #535AF1;
+            }
+
+            &:hover .channels path {
+                fill: #535AF1;
+            }
+
+            >a {
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        >a {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            margin-block: 25px;
+            margin-left: 25px;
+            gap: 15px;
+            padding: 4px 14px 4px 14px;
+
+            &:hover {
+                color: #535AF1;
+            }
+
+            &:hover .channels path {
+                fill: #535AF1;
+            }
+        }
+
+        h1 {
+            font-size: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+
+            &:hover {
+                color: #535AF1;
+            }
+
+            &:hover .channels path {
+                fill: #535AF1;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            >a {
+                width: 30px;
+                height: 30px;
+                margin-right: 9px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.channel {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 166px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-left: 25px;
+    gap: 15px;
+    padding: 4px 17px 4px 17px;
+    filter: brightness(0) saturate(0);
+
+    &:hover {
+        filter: brightness(1) saturate(1);
+        background-color: #ECEEFE;
+    }
+}
+
+.channel.active {
+    color: #535AF1;
+    background-color: #ECEEFE;
+    filter: brightness(1) saturate(1);
+}
+
+.addBtn {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 34px;
+    height: 30px;
+    font-size: 24px;
+    margin-bottom: 25px;
+
+    &:hover {
+        background-color: #ECEEFE;
+        color: #535AF1;
+        font-size: 25px;
+        font-weight: 700;
+    }
+}
+
+.editChannelResp {
+    display: none;
+}
+
+.users {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 20px 4px 20px;
+    margin-block: 12px;
+    height: 50px;
+    gap: 15px;
+    margin-left: 10px;
+    border-radius: 35px;
+    width: fit-content;
+
+    &:hover {
+        background-color: #ECEEFE;
+    }
+
+    >div {
+        position: relative;
+        height: 50px;
+    }
+
+    img {
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+
+    span {
+        position: absolute;
+        left: 36px;
+        bottom: 2px;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        border: 2px #edefff solid;
+    }
+}
+
+.users.active {
+    color: #535AF1;
+    background-color: #ECEEFE;
+    font-weight: 700;
+}
+
+.slideOut {
+    opacity: 0;
+    transform: translateX(-110%) !important;
+    visibility: hidden;
+    transition: transform 0.2s ease-in-out, visibility 0.2s linear, opacity 0.2s;
+}
+
+.rotateArrow {
+    transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        width: 100%;
+        padding: 7px 30px 32px 30px;
+
+        .wrapper {
+            h2 {
+                display: none;
+            }
+
+            >span {
+                width: 166px;
+                font-size: 18px;
+                font-weight: 400;
+                color: black;
+                padding: 4px 20px 4px 20px;
+
+                >img {
+                    filter: brightness(0) saturate(0);
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+
+            >a {
+                color: #535AF1;
+                font-size: 18px;
+                margin-bottom: 25px;
+                margin-left: 25px;
+                gap: 15px;
+                padding: 4px 20px 4px 20px;
+
+                .channels path {
+                    fill: #535AF1;
+                }
+            }
+        }
+
+        .editChannelResp {
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: #535AF1;
+            border-radius: 50%;
+            position: sticky;
+            left: calc(100% - 20px);
+            bottom: 8px;
+            height: 60px;
+            width: 60px;
+
+            >img {
+                filter: invert(1);
+            }
+        }
+
+        .addBtn {
+            color: #535AF1;
+        }
+    }
+
+    .slideOut {
+        opacity: 1;
+        transform: translateX(0%) !important;
+        visibility: unset;
+        transition: transform 0.2s ease-in-out, visibility 0.2s linear, opacity 0.2s;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    section {
+        padding: 7px 5px 12px 5px;
+    }
+}

@@ -1,0 +1,23 @@
+<div *ngIf="message.reactions.length > 0" [class.my-message]="userService.loggedUserId === message.senderId"
+    class="emoji-reaction">
+    <div *ngFor="let emoji of message.reactions" (click)="addExistingEmoji(emoji.emoji, message)" class="emoji-icon">
+        <p>{{emoji.emoji}}</p>
+        <p>{{emoji.users.length}}</p>
+        <div class="emoji-popup">
+            <p>{{emoji.emoji}}</p>
+            <div class="emoji-users">
+                <div *ngFor="let user of emoji.users; let i = index">
+                    <p>{{getUserName(user)}}</p>
+                    <p *ngIf="emoji.users.length > 2 && i < emoji.users.length - 2">,</p>
+                    <p *ngIf="i === emoji.users.length - 2"> und</p>
+
+                </div>
+            </div>
+            <p>hat reagiert</p>
+        </div>
+    </div>
+    <div>
+        <mat-icon (click)="emojiService.toggleEmojiPicker('reaction', chatType, message); $event.stopPropagation()"
+            class="add-emoji" fontSet="material-symbols-rounded">add_reaction</mat-icon>
+    </div>
+</div>

@@ -1,0 +1,386 @@
+.animationDone {
+    animation: none !important;
+}
+
+.dNone {
+    display: none !important;
+}
+
+.colorCountainer {
+    position: fixed;
+    z-index: 4;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: linear-gradient(#797df2, #323be6);
+    animation: fadeColor 2.5s linear;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 115px;
+    max-width: 1920px;
+    width: 100%;
+
+    .spaceholderLogo {
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        min-width: 296px;
+        width: 296px;
+        height: 70px;
+    }
+
+    .logoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        font-size: 30px;
+        font-weight: 700;
+        gap: 16px;
+        z-index: 4;
+        animation: slideIn 2.5s linear;
+
+        @supports (-moz-appearance: none) {
+            animation: mozSlideIn 2.5s linear;
+        }
+
+        svg {
+            z-index: 4;
+            height: 70px;
+            width: 70px;
+            animation: slideInSVG 2.5s linear;
+        }
+
+        p {
+            animation: slideInText 2.5s linear;
+        }
+    }
+}
+
+.homeLogo {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    min-width: 296px;
+    width: 296px;
+    height: 70px;
+    font-size: 30px;
+    font-weight: 700;
+    gap: 16px;
+
+    >svg {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+app-searchbar {
+    width: 100%;
+}
+
+app-profile {
+    width: 512px;
+}
+
+@media screen and (max-width: 768px) {
+    .homeLogo {
+        margin-left: 16px;
+        display: flex;
+        align-items: center;
+        min-width: 176px;
+        width: 176px;
+        height: 50px;
+        font-size: 22px;
+        font-weight: 700;
+        gap: 11px;
+
+        >svg {
+            height: 45px;
+            width: 45px;
+        }
+
+        .backArrow {
+            rotate: 90deg;
+            cursor: pointer;
+        }
+
+        img {
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+        }
+    }
+
+    section {
+        height: 80px;
+
+        .spaceholderLogo {
+            margin-left: 0;
+            width: 100%;
+            min-width: 200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logoContainer {
+            width: 100%;
+            animation: slideInResp 2.5s linear;
+
+            svg {
+                height: 45px;
+                width: 45px;
+                animation: slideInSVGResp 2.5s linear;
+            }
+
+            p {
+                font-size: 22px;
+                width: 110px;
+                animation: slideInTextResp 2.5s linear;
+            }
+        }
+    }
+
+    app-searchbar {
+        display: none;
+    }
+
+    app-profile {
+        width: auto;
+    }
+
+    h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 0 16px;
+
+        >a {
+            cursor: pointer;
+        }
+
+        >img {
+            height: 50px;
+        }
+    }
+}
+
+@media screen and (min-width: 1921px) {
+    section {
+
+        .logoContainer {
+            animation: none;
+            animation: slideInBig 2.5s linear;
+
+            @supports (-moz-appearance: none) {
+                animation: mozSlideInBig 2.5s linear;
+            }
+        }
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+    }
+
+    35% {
+        height: 100vh;
+        width: 100%;
+    }
+
+    45% {
+        height: 85vh;
+        width: 85vw;
+    }
+
+    80% {
+        top: 10px;
+        left: 20;
+        height: 200px;
+        width: 400px;
+    }
+
+    100% {
+        top: 7px;
+        left: 50px;
+        width: 230px;
+        height: 101px;
+    }
+}
+
+@keyframes slideInSVG {
+    0% {
+        height: 184px;
+        width: 184px;
+    }
+
+    35% {
+        height: 184px;
+        width: 184px;
+    }
+
+    100% {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@keyframes slideInText {
+    0% {
+        color: white;
+        width: 0px;
+        transform: translateX(-100%);
+        overflow: hidden;
+        font-size: 48px;
+    }
+
+    10% {
+        width: 0px;
+        transform: translateX(-17.5%);
+        overflow: hidden;
+    }
+
+    25% {
+        width: 250px;
+        visibility: visible;
+        transform: translateX(0%);
+        font-size: 48px;
+    }
+
+    75% {
+        color: white;
+        font-size: 32px;
+    }
+
+    100% {
+        width: 145px;
+        color: black;
+        font-size: 30px;
+    }
+}
+
+@keyframes fadeColor {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes slideInTextResp {
+    0% {
+        color: white;
+        width: 0px;
+        transform: translateX(-100%);
+        overflow: hidden;
+        font-size: 30px;
+    }
+
+    10% {
+        width: 0px;
+        transform: translateX(-17.5%);
+        overflow: hidden;
+    }
+
+    25% {
+        width: 150px;
+        visibility: visible;
+        transform: translateX(0%);
+        font-size: 30px;
+    }
+
+    75% {
+        color: white;
+    }
+
+    100% {
+        color: black;
+        width: 110px;
+        font-size: 22px;
+    }
+}
+
+@keyframes slideInSVGResp {
+    0% {
+        height: 80px;
+        width: 80px;
+    }
+
+    35% {
+        height: 80px;
+        width: 80px;
+    }
+
+    100% {
+        height: 45px;
+        width: 45px;
+    }
+}
+
+@keyframes slideInResp {
+    0% {
+        top: 0;
+        left: 0;
+        height: 100vh;
+    }
+
+    35% {
+        height: 100vh;
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+        height: 101px;
+    }
+}
+
+@keyframes slideInBig {
+    0% {
+        top: 0;
+        left: calc(50vw - 960px);
+        height: 100%;
+        width: 1920px;
+    }
+
+    35% {
+        height: 100%;
+        width: 1920px;
+    }
+
+    45% {
+        height: 85%;
+        width: 1632px;
+    }
+
+    80% {
+        top: 0px;
+        height: 200px;
+        width: 400px;
+    }
+
+    100% {
+        top: 8px;
+        width: 230px;
+        height: 101px;
+        left: calc(50vw - 908px);
+    }
+}

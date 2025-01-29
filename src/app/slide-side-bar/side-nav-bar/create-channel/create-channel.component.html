@@ -1,0 +1,106 @@
+<section class="dFlexCenter" [ngClass]="{'dNone': addingUsers}">
+    <div #createdChannelBox class="nameBox createBox">
+        <h2>Channel erstellen<span class="dFlexCenter" (click)="closeCreateChan()">+</span></h2>
+        <p>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein #marketing zum
+            Beispiel.</p>
+
+        <h3>Channel-Name</h3>
+        <form #form="ngForm">
+
+            <div>
+                <img src="./tag_grey.png" alt="#">
+                <input #name="ngModel" placeholder="z.B. Kooperationsprojekte" type="text" [(ngModel)]="channelName"
+                    name="channelName" [ngClass]="{'redBorder': !name.valid && name.touched && !name.disabled}"
+                    minlength="3" class="createChanInput" required>
+            </div>
+
+            <h3>Channel-Beschreibung <p class="optional">(optional)</p>
+            </h3>
+
+            <div>
+                <textarea placeholder="Deine Channel-Beschreibung" type="text" [(ngModel)]="channelDescription"
+                    name="channelDescription"></textarea>
+            </div>
+
+        </form>
+
+        <button [ngClass]="{'greyButton': !name.valid && !name.disabled}" (click)="checkChanName()">Erstellen</button>
+    </div>
+</section>
+
+
+
+<section class="dFlexCenter" [ngClass]="{'dNone': !addingUsers, 'invisibleOverlay': !addingUsers}">
+    <div #createPeopleBox class="addPeopleBox createBox" [ngClass]="{'slideOut': !addingUsers, 'slideIn': addingUsers}">
+        <hr (click)="closeAddUsers()">
+        <h2>Leute hinzufügen<span class="dFlexCenter" (click)="closeAddUsers()">+</span></h2>
+
+        <form #form="ngForm">
+
+            <div>
+                <input [(ngModel)]="selectedOption" name="selection" class="radio" type="radio" value="all" id="all" />
+                <label for="all">Alle Mitglieder von Devspace hinzufügen</label>
+            </div>
+
+            <div>
+                <input [(ngModel)]="selectedOption" name="selection" class="radio" type="radio" value="selectedUser"
+                    id="selectedUser" />
+                <label for="selectedUser">Bestimmte Leute hinzufügen</label>
+            </div>
+        </form>
+        @if (selectedOption === 'selectedUser') {
+        <div class="dropdownInput">
+            <input (keyup)="updateField()" [(ngModel)]="searchInput" (focus)="dropdownActive = true" class="searchUser"
+                type="search" placeholder="{{inputPlaceholder}}">
+            <div class="invisibleInputOverlay">
+                @for (user of userService.users; track user.id) {
+
+                @for (select of selectedUserId; track $index) {
+
+                @if (select === user.id) {
+
+                @if ($index < 2) {
+                    <p><img src=".{{user.userImage}}"><p>{{user.name}}</p><span (click)="selectUser(user.id)">+</span></p>
+                    }
+                    @if ($index === 2) {
+                    <p class="click" (click)="dropdownActive = true">+ {{ selectedUserId.length - 2 }} Users</p>
+                    }
+                    }
+                    }
+                    }
+            </div>
+
+            @if (dropdownActive) {
+            <div class="dropdown" #focusdropdown>
+                @for (user of userService.users; track user.id) {
+
+                @if (user.id !== userService.loggedUserId && searchIds.includes(user.id)) {
+                <div (click)="selectUser(user.id)" [class.active]="isSelected(user.id)" class="users">
+                    <div>
+                        <img src=".{{user.userImage}}">
+                        <span
+                            [ngStyle]="{'background-color': user.status === 'online' ? onlineColor : offlineColor}"></span>
+                    </div>
+                    <p>{{user.name}}</p>
+                </div>
+                }
+
+                } @empty {
+                <div class="users">
+                    <div>
+                        <span></span>
+                    </div>
+                    <p>No Users found</p>
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }
+
+        <button
+            [ngClass]="{'greyButton': !selectedOption || selectedOption === 'selectedUser' && selectedUserId.length === 0}"
+            (click)="createChanel()">Erstellen</button>
+
+    </div>
+</section>

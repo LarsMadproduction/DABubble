@@ -1,0 +1,140 @@
+<section>
+  <img
+    (mouseover)="onHoverArrow(true)"
+    (mouseout)="onHoverArrow(false)"
+    (click)="backToLogin()"
+    class="back-arrow"
+    [src]="backArrowImage"
+    alt=""
+  />
+  <div class="section-content">
+    <div class="headline">
+      <h2>Konto erstellen</h2>
+      <span
+        >Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
+        DABubble-Konto.
+      </span>
+    </div>
+    <form #form="ngForm">
+      <div class="input">
+        <img [src]="userNameImg" alt="Email Icon" />
+        <input
+          placeholder="Name und Nachname"
+          type="text"
+          name="name"
+          [(ngModel)]="userNameText"
+          (focus)="onFocus('userName')"
+          (blur)="onBlur('userName')"
+          (input)="onInput('userName', $event)"
+          #userNameInput="ngModel"
+          required
+          userName
+        />
+        <div class="error-message" *ngIf="(userNameInput.invalid && userNameInput.touched) || userNameError">
+          *Bitte schreiben Sie einen Namen.
+        </div>
+      </div>
+      <div class="input">
+        <img [src]="emailImg" alt="Email Icon" />
+        <input
+          placeholder="beispielname@email.com"
+          type="email"
+          name="email"
+          [(ngModel)]="emailText"
+          (focus)="onFocus('email')"
+          (blur)="onBlur('email')"
+          (input)="onInput('email', $event)"
+          #emailInput="ngModel"
+          required
+          email
+        />
+        <div class="error-message" *ngIf="(emailInput.invalid && emailInput.touched) || emailError">
+          *Diese E-Mail-Adresse ist leider ungültig.
+        </div>
+      </div>
+
+      <div class="input password-input">
+        <img [src]="lockImg" alt="Lock Icon" />
+        <input
+          placeholder=" Neues Passwort"
+          [type]="passwordFieldType"
+          name="password"
+          [(ngModel)]="passwordText"
+          (focus)="onFocus('password')"
+          (blur)="onBlur('password')"
+          (input)="onInput('password', $event)"
+          #passwortInput="ngModel"
+          required
+          password
+        />
+        <img
+          (mousedown)="onPasswordMouseDown()"
+          (mouseup)="onPasswordMouseUp()"
+          (mouseleave)="onPasswordMouseUp()"
+          class="visibility-icon"
+          [src]="visibilityIcon"
+          alt="visibility Icon"
+        />
+        <div class="error-message" *ngIf="(passwortInput.invalid && passwortInput.touched) || passwordError">
+          *Das Passwort muss mindestens 8 Zeichen, einen Großbuchstaben, eine Zahl und ein Sonderzeichen enthalten.
+        </div>
+      </div>
+      <div class="input">
+        <img [src]="confirmLockImg" alt="Lock Icon" />
+        <input
+          placeholder="Passwort bestätigen"
+          [type]="confirmPasswordFieldType"
+          name="confirm"
+          [(ngModel)]="confirmPasswordText"
+          (focus)="onFocus('confirm')"
+          (blur)="onBlur('confirm')"
+          (input)="onInput('confirm', $event)"
+          #confirmPasswortInput="ngModel"
+          required
+          confirm
+        />
+        <img
+          (mousedown)="onConfirmMouseDown()"
+          (mouseup)="onConfirmMouseUp()"
+          (mouseleave)="onConfirmMouseUp()"
+          class="visibility-icon"
+          [src]="confirmVisibilityIcon"
+          alt="visibility Icon"
+        />
+        <div class="error-message" *ngIf="(confirmPasswortInput.invalid && confirmPasswortInput.touched) || confirmPasswordError">
+          *Passwörter müssen übereinstimmen.
+        </div>
+      </div>
+    </form>
+    <div class="legal-notice">
+      <img
+        (mouseover)="onHover(true)"
+        (mouseout)="onHover(false)"
+        (click)="onClick()"
+        [src]="currentImage"
+        alt="Checkbox"
+      />
+      <p>
+        Ich stimme der
+        <span [routerLink]="['/privacy-policy']" (click)="onClick()"
+          >Datenschutzerklärung</span
+        >
+        zu.
+      </p>
+      <div class="error-message" *ngIf="showError && !isChecked">
+        *Bitte stimmen Sie der Datenschutzerklärung zu.
+      </div>
+    </div>
+    <div class="next-btn">
+      <button
+        [disabled]="!next"
+        [ngClass]="{ 'primary-btn': next, 'disabled-btn': !next }"
+        (click)="openAvatar()"
+        class="primary-btn"
+      >
+        Weiter
+      </button>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

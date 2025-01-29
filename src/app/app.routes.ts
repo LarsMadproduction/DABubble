@@ -1,0 +1,28 @@
+import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { ChooseAvatarComponent } from './choose-avatar/choose-avatar.component';
+import { ContactWindowComponent } from './contacts/contact-window/contact-window.component';
+import { PasswordResetSendMailComponent } from './password-reset-send-mail/password-reset-send-mail.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileWindowComponent } from './contacts/profile-window/profile-window.component';
+import { EditChannelComponent } from './slide-side-bar/edit-channel/edit-channel.component';
+import { ImprintComponent } from './shared/imprint/imprint.component';
+import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.component';
+import { FooterComponent } from './shared/footer/footer.component';
+export const routes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'header', component: HeaderComponent },
+  { path: 'imprint', component: ImprintComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'register', component: CreateAccountComponent },
+  { path: 'avatar', component: ChooseAvatarComponent },
+  { path: 'profile', component: ProfileWindowComponent },
+  { path: 'reset-password', component: PasswordResetSendMailComponent },
+  { path: 'reset-password/:token', component: PasswordResetComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'home/:userId', component: HomeComponent },
+];

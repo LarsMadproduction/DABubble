@@ -1,0 +1,30 @@
+<section>
+    <div class="align">
+        <div class="top">
+            <h2>Profil</h2>
+            <img (click)="close()" src="/close.svg" alt="close icon">
+        </div>
+        <div class="avatar">
+            <img src="{{picture}}">
+        </div>
+        <div class="name">
+            <h1>{{ name }}</h1>
+            <div class="status-container">
+                <div class="status" [ngClass]="{ active: isActive, inactive: !isActive }"></div>
+                <span class="status-text" [ngStyle]="{ color: isActive ? 'green' : 'gray' }">
+                    {{ isActive ? 'Aktiv' : 'Abwesend' }}
+                </span>
+            </div>
+        </div>
+        <div class="mail">
+            <div class="headline">
+                <img src="mail-black.png" alt="Mail Icon">
+                <h2>E-Mail-Adresse</h2>
+            </div>
+            <a [href]="'mailto:' + email">{{ email }}</a>
+        </div>
+        <div class="message">
+            <img src="message.svg" (click)="openDirectMessage(userId)">
+        </div>
+    </div>
+</section>

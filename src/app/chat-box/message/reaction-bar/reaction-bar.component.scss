@@ -1,0 +1,84 @@
+.reactions-container {
+    display: flex;
+    align-items: center;
+    padding: 3px 15px 3px 15px;
+    gap: 5px;
+    border-radius: 25px 25px 0px 25px;
+    border: 1px solid #ADB0D9;
+    background-color: white;
+
+    .recent-emoji {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: 5px;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 100px;
+
+            &:hover {
+                background-color: #ECEEFE;
+                cursor: pointer;
+            }
+        }
+    }
+
+    mat-icon {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #ECEEFE;
+            color: #535AF1;
+        }
+    }
+
+    .open-options {
+        position: relative;
+
+        .edit-message {
+            position: absolute;
+            width: max-content;
+            top: 18px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px 10px 20px;
+            border-radius: 0px 30px 30px 30px;
+            background-color: white;
+            box-shadow: 0px 6px 14px 0px #00000033;
+
+            button {
+                all: unset;
+                font-size: 24px;
+                font-weight: 600;
+                padding: 10px 20px 10px 20px;
+                border-radius: 100px;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #535AF1;
+                    font-weight: 700;
+                    background-color: #ECEEFE;
+                }
+            }
+        }
+    }
+}
+
+emoji-mart {
+    top: -100px;
+    left: -100px;
+}

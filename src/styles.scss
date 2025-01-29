@@ -1,0 +1,52 @@
+@import 'material-symbols';
+@import '@ctrl/ngx-emoji-mart/picker';
+
+html,
+body {
+  height: 100%;
+  background-color: #eceefe;
+}
+
+body {
+  margin: 0;
+
+  font-family: nunito, Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  border: none;
+}
+
+@font-face {
+  font-family: nunito;
+  src: url('/Nunito-VariableFont_wght.ttf');
+}
+
+.dFlexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.emoji-mart {
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.0784313725);
+  @media screen and (max-width: 400px) {
+    width: 280px !important;
+  }
+}
+
+.emoji-mart-category .emoji-mart-emoji span {
+  cursor: pointer !important;
+}
+
+.emoji-mart-anchors svg,
+.emoji-mart-anchors img {
+  cursor: pointer !important;
+}
+
+.emoji-mart-skin {
+  cursor: pointer !important;
+}

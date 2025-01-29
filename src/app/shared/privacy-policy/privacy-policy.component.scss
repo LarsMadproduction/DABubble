@@ -1,0 +1,44 @@
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    background-color: white;
+    padding: 40px;
+    padding-top: 20px;
+    border-radius: 30px;
+    width: 600px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    word-break: break-word;
+    max-height: calc(100vh - 210px);
+
+    img {
+        cursor: pointer;
+        margin-bottom: 8px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.8);
+        }
+    }
+}
+
+.wrapper {
+    position: sticky;
+    top: -20px;
+    background: white;
+    height: 36px;
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        width: calc(100% - 124px);
+        max-height: calc(100vh - 150px);
+        padding: 16px 36px 16px 36px;
+        overflow-y: auto;
+        scrollbar-width: none;
+        word-break: break-word;
+    }
+}

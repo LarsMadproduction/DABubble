@@ -1,0 +1,24 @@
+<div class="reactions-container">
+    @if( getRecentEmojis().length > 0) {
+    <div class="recent-emoji">
+        <span *ngFor="let emoji of getRecentEmojis()" (click)="addRecentEmoji(emoji, message)">{{emoji}}</span>
+    </div>
+    }
+
+    <mat-icon (click)="emojiService.toggleEmojiPicker('reactionBar', chatType, message); $event.stopPropagation()"
+        fontSet="material-symbols-rounded">add_reaction</mat-icon>
+    @if(chatType !== 'thread') {
+    <mat-icon (click)="openThread(message)" fontSet="material-symbols-rounded">comment</mat-icon>
+    }
+    @if(userService.loggedUserId === message.senderId ) {
+
+    @if(!isFirstMessageInThread(message)) {
+    <div class="open-options">
+        <mat-icon (click)="toggleOptions()" fontSet="material-symbols-rounded">more_vert</mat-icon>
+        <div *ngIf="optionsOpen" appClickOutside (clickOutside)="closeOptions()" class="edit-message">
+            <button (click)="openEditMessage(message)">Nachricht bearbeiten</button>
+        </div>
+    </div>
+    }
+    }
+</div>

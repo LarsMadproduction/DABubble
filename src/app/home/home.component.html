@@ -1,0 +1,17 @@
+<div class="home-container">
+    <app-slide-side-bar></app-slide-side-bar>
+
+
+    <div class="channel-container" [ngClass]="{ 'slide-out': !channelService.slideOutNavBar, 'slide-in': channelService.slideOutNavBar,
+         'active': channelService.isSmallScreen && messageService.threadOpen}">
+        <app-chat-box [threadId]="null" [chatType]="determineChatType()"></app-chat-box>
+    </div>
+
+    @if(messageService.threadOpen) {
+    <div class="thread-container" [ngClass]="{ 'active': channelService.isSmallScreen  && !messageService.threadOpen,
+         'slide-out-thread': !channelService.slideOutNavBar && channelService.isSmallScreen,
+          'slide-in-thread': channelService.slideOutNavBar && channelService.isSmallScreen}">
+        <app-chat-box [threadId]="messageService.threadId" [chatType]="'thread'"></app-chat-box>
+    </div>
+    }
+</div>

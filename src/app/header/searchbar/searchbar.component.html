@@ -1,0 +1,145 @@
+<section [class.chat-box]="chatType === 'new'">
+    <input [(ngModel)]="searchBar" type="text"
+        [placeholder]="chatType === 'new' ? 'An: #channel, oder @jemand oder E-Mail Adresse' : 'Devspace durchsuchen'"
+        name="search" (keyup.enter)="chatType !== 'new' && searchResults(searchBar)"
+        (keyup)="chatType === 'new' && searchInNewChat(searchBar)">
+
+    @if(chatType !== 'new') {
+    <a (click)="searchResults(searchBar)">
+        <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.5625 26.1042L15.3958 17.9375C14.6667 18.5208 13.8281 18.9826 12.8802 19.3229C11.9323
+            19.6632 10.9236 19.8333 9.85417 19.8333C7.20486 19.8333 4.96292 18.916 3.12833 17.0815C1.29278
+            15.2459 0.375 13.0035 0.375 10.3542C0.375 7.70486 1.29278 5.46243 3.12833 3.62687C4.96292 1.79229
+            7.20486 0.875 9.85417 0.875C12.5035 0.875 14.7459 1.79229 16.5815 3.62687C18.416 5.46243 19.3333
+            7.70486 19.3333 10.3542C19.3333 11.4236 19.1632 12.4323 18.8229 13.3802C18.4826 14.3281 18.0208
+            15.1667 17.4375 15.8958L25.6406 24.099C25.908 24.3663 26.0417 24.6944 26.0417 25.0833C26.0417
+            25.4722 25.8958 25.8125 25.6042 26.1042C25.3368 26.3715 24.9965 26.5052 24.5833 26.5052C24.1701
+            26.5052 23.8299 26.3715 23.5625 26.1042ZM9.85417 16.9167C11.6771 16.9167 13.2268 16.2789
+            14.5033 15.0033C15.7789 13.7268 16.4167 12.1771 16.4167 10.3542C16.4167 8.53125 15.7789
+            6.98153 14.5033 5.705C13.2268 4.42944 11.6771 3.79167 9.85417 3.79167C8.03125 3.79167
+            6.48153 4.42944 5.205 5.705C3.92944 6.98153 3.29167 8.53125 3.29167 10.3542C3.29167
+            12.1771 3.92944 13.7268 5.205 15.0033C6.48153 16.2789 8.03125 16.9167 9.85417 16.9167Z" fill="#686868" />
+        </svg>
+    </a>
+    }
+
+    @if (dropdownActive) {
+    <div class="searchbarDropdown" #searchbarDropdown>
+        <div>
+
+            @if(chatType=== 'new') {
+            @if (filteredUsers.length > 0) {
+            <h3>Gefundene Nutzer</h3>
+            @for (user of userService.users; track user.id) {
+            @if (filteredUsers.includes(user.id)) {
+            <p (click)="opendirectMsg(user.id)"><img src=".{{user.userImage}}">{{user.name}}</p>
+            }
+            }
+            }
+            @if(filteredUsers.length === 0 && searchBar.startsWith('@')) {
+            <span>Kein Nutzer mit diesem Namen gefunden</span>
+            }
+            }
+
+            @if(chatType === 'new') {
+            @if(filteredEmails.length > 0){
+            <h3>Gefundene E-Mails</h3>
+            @for (user of userService.users; track user.id) {
+            @if (filteredEmails.includes(user.id)) {
+            <p (click)="opendirectMsg(user.id)"><img src=".{{user.userImage}}">{{user.email}}</p>
+            }
+            }
+            }
+            @if (filteredEmails.length === 0 && !(searchBar.startsWith('@') || searchBar.startsWith('#'))) {
+            <span>Kein Nutzer mit diesem E-Mail gefunden</span>
+            }
+            }
+
+            @if(chatType === 'new'){
+            @if( filteredChannels.length > 0) {
+
+            <h3>Gefundene Channelnamen</h3>
+            @for (channel of channelService.channels; track channel.chanId) {
+
+            @if (filteredChannels.includes(channel.chanId)) {
+            <p (click)="openChannel(channel.chanId)" class="searchResult"><b>#</b>{{channel.chanName}}</p>
+            }
+            }
+            }
+            @if(filteredChannels.length === 0 && searchBar.startsWith('#')) {
+            <span>Kein Channel mit diesem Namen gefunden</span>
+            }
+            }
+
+
+            @if(chatType !== 'new') {
+             <h3>Gefundene Nutzer</h3>
+            @if (filteredUsers.length === 0) {
+            <span>Kein Nutzer mit diesem Namen gefunden</span>
+            }
+            @for (user of userService.users; track user.id) {
+
+            @if (filteredUsers.includes(user.id)) {
+            <p (click)="opendirectMsg(user.id)"><img src="{{user.userImage}}">{{user.name}}</p>
+            }
+            }
+            }
+
+
+
+            @if(chatType !== 'new') {
+            <h3>Gefundene Channelnamen oder Nutzer</h3>
+            @if (filteredChannels.length === 0) {
+            <span>Kein Kanalname oder Nutzer gefunden</span>
+            }
+            @for (channel of channelService.channels; track channel.chanId) {
+
+            @if (filteredChannels.includes(channel.chanId)) {
+            <p (click)="openChannel(channel.chanId)" class="searchResult"><b>#</b>{{channel.chanName}}</p>
+            }
+            }
+            }
+
+            @if(chatType !== 'new') {
+            <h3>Gefundene Nachrichten in Channels</h3>
+            @if (filteredMessagesWithChannels.length === 0) {
+            <span>Keine Nachricht in Channels gefunden</span>
+            }
+            @for (msg of filteredMessagesWithChannels; track $index) {
+            <p (click)="openChannel(msg.channelId)" class="searchResult">{{msg.messageText}} in <b>#
+                    {{msg.chanName}}</b></p>
+            }
+            }
+
+            @if(chatType !== 'new') {
+            <h3>Gefundene Private Nachrichten</h3>
+            @if (filteredMessagesWithPrivChat.length === 0) {
+            <span>Keine privaten Nachrichten gefunden</span>
+            }
+            @for (msg of filteredMessagesWithPrivChat; track $index) {
+            @for (user of userService.users; track user.id) {
+            @if (msg.messageUserId === user.id) {
+            <p (click)="opendirectMsg(msg.messageUserId)" class="searchResult">{{msg.messageText}}<b> von </b><img
+                    src="{{user.userImage}}"><b>{{user.name}}</b>
+            </p>
+            }
+            }
+            }
+            }
+
+
+            @if(chatType !== 'new') {
+            <h3>Gefundene Nachrichten in Threads</h3>
+            @if (filteredMessagesWithThreads.length === 0) {
+            <span>Keine Nachricht in Threads gefunden</span>
+            }
+            @for (msg of filteredMessagesWithThreads; track $index) {
+            <p (click)="openThread(msg.messageThreadId)" class="searchResult">{{msg.messageText}}</p>
+            }
+            }
+
+        </div>
+    </div>
+    }
+
+</section>

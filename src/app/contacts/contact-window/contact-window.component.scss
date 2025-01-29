@@ -1,0 +1,147 @@
+section {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 500px;
+    height: 705px;
+    padding: 40px 0px 0px 0px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 10px 0px #00000033;
+    background-color: white;
+
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 64px;
+    margin-right: 64px;
+
+    img {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: scale(1.5);
+        }
+    }
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+
+    img {
+        width: 200px;
+        height: 200px;
+        gap: 20px;
+        border-radius: 500px;
+    }
+}
+
+.name {
+    margin-left: 64px;
+    margin-top: 45px;
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+
+    .status-text {
+        font-size: 20px;
+    }
+}
+
+.status {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status.active {
+    background-color: green;
+}
+
+.status.inactive {
+    background-color: gray;
+}
+
+.mail {
+    img {
+        width: 25px;
+        height: 20px;
+    }
+
+    a {
+        font-size: 18px;
+        margin-left: 114px;
+    }
+}
+
+.headline {
+    display: flex;
+    margin-top: 45px;
+    align-items: center;
+    margin-left: 64px;
+    gap: 20px;
+}
+
+.message {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 45px;
+
+    img {
+        cursor: pointer;
+        transition: filter 0.3s ease;
+
+        &:hover {
+            filter: brightness(1.5);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        border-radius: 30px;
+        max-width: 500px;
+        width: calc(100vw - 20px);
+    }
+
+    .edit {
+        width: 85%;
+    }
+
+    .edit-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .input {
+        width: 75%;
+    }
+
+    .buttons {
+        gap: 20px;
+    }
+
+    .mail {
+        max-width: 280px;
+    }
+}
