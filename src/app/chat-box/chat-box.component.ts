@@ -70,7 +70,7 @@ export class ChatBoxComponent {
   loggedUserId: string = '';
   users: User[] = this.userService.users;
   messageText: string = '';
-  guestUrl: string = '0LxX4SgAJLMdrMynLbem';
+  guestUrl: string = 'vmJ2xj0yPyZHCM53TLfF';
   threadMessageText: string = '';
   focusedInput: string | null = null;
   @ViewChild('emojiPicker') emojiPicker!: ElementRef<HTMLElement>;

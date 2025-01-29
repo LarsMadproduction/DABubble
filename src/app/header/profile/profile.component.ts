@@ -20,7 +20,7 @@ export class ProfileComponent {
   openProfileBox: boolean = false;
   slideOut: boolean = false;
 
-  guestUrl: string = '0LxX4SgAJLMdrMynLbem';
+  guestUrl: string = 'vmJ2xj0yPyZHCM53TLfF';
 
   constructor(public userService: UserService, private messageService: MessageService, private channelService: ChannelService) { }
 

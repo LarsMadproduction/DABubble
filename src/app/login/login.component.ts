@@ -42,7 +42,7 @@ export class LoginComponent {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
 
-  guestUrl: string = '0LxX4SgAJLMdrMynLbem';
+  guestUrl: string = 'vmJ2xj0yPyZHCM53TLfF';
 
   /**
    * Handles the Google login process, authenticates the user, and stores the user data.

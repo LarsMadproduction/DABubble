@@ -21,7 +21,7 @@ export class ChannelService {
   chanCreatedByUser: string = '';
   userIds: string[] = [];
 
-  guestChannelId: string = 'x0yH7Gmb4rUjwzLYYocC'
+  guestChannelId: string = 'QEVyZQeW6AgZGsHZUT0R'
 
 
   unsubChannelList;
